@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { motion } from "motion/react";
 import { Play, Pause, ChevronLeft, Disc3, Music2 } from "lucide-react";
 import { Album, Track } from "../data/albums";
+import { IridescentBg } from "./IridescentBg";
 
 interface AlbumDetailProps {
   album: Album;
@@ -71,13 +72,9 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed inset-0 z-[60] flex items-center justify-center overflow-hidden bg-ocean-50"
+      className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden"
     >
-      {/* Background Decor (Subtle light blue theme) */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-ocean-100 rounded-full blur-[120px] opacity-60" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-white rounded-full blur-[120px] opacity-60" />
-      </div>
+      <IridescentBg />
 
       {/* Hidden Audio Element */}
       <audio 
@@ -205,7 +202,7 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white/5 backdrop-blur-2xl rounded-[32px] border border-white/40 p-7 shadow-xl"
+              className="bg-white/40 backdrop-blur-2xl rounded-[32px] border border-white/60 p-7 shadow-xl"
             >
               <h4 className="text-[10px] font-mono text-ocean-900/40 uppercase tracking-[0.2em] mb-4">专辑简介</h4>
               <div className="text-[12px] font-medium text-ocean-900/70 leading-relaxed italic whitespace-pre-line max-h-[160px] overflow-y-auto no-scrollbar">
@@ -217,7 +214,7 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white/10 backdrop-blur-2xl rounded-[32px] border border-white/40 p-6 flex flex-col md:flex-row items-center gap-8 shadow-xl"
+              className="bg-white/50 backdrop-blur-2xl rounded-[32px] border border-white/60 p-6 flex flex-col md:flex-row items-center gap-8 shadow-xl"
             >
               <button 
                 onClick={onTogglePlay}
@@ -250,7 +247,7 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white/5 backdrop-blur-2xl rounded-[40px] border border-white/40 p-8 shadow-2xl"
+              className="bg-white/40 backdrop-blur-2xl rounded-[40px] border border-white/60 p-8 shadow-2xl"
             >
               <div className="mb-8 flex items-end justify-between">
                 <div>
@@ -270,8 +267,8 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
                       onClick={() => onPlayTrack(track)}
                       className={`group flex items-center gap-4 py-8 px-8 rounded-3xl transition-all border ${
                         isCurrent 
-                        ? 'bg-white/60 border-white/80 shadow-inner scale-[1.01]' 
-                        : 'bg-white/10 border-transparent hover:bg-white/20'
+                        ? 'bg-white/80 border-white/90 shadow-inner scale-[1.01]' 
+                        : 'bg-white/30 border-transparent hover:bg-white/50 shadow-sm'
                       } cursor-pointer`}
                     >
                       <div className="relative w-12 h-12 flex items-center justify-center shrink-0">

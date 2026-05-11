@@ -1,1 +1,50 @@
 @import "tailwindcss";
+
+@theme {
+  --color-ocean-50: #f0f7ff;
+  --color-ocean-100: #e0effe;
+  --color-ocean-200: #bae0fd;
+  --color-ocean-300: #7cc8fb;
+  --color-ocean-400: #38abf8;
+  --color-ocean-500: #0e91e9;
+  --color-ocean-600: #0273c7;
+  --color-ocean-700: #035ba1;
+  --color-ocean-800: #074e85;
+  --color-ocean-900: #0c426e;
+  --color-ocean-950: #082a4a;
+
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-ocean-50 text-ocean-900;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(51, 103, 153, 0.2);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(51, 103, 153, 0.4);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,57 +1,65 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MapPin, Download, Heart, ChevronLeft, ChevronRight } from "lucide-react";
+import { IridescentBg } from "./IridescentBg";
+
+import image1 from "../assets/images/xxx.jpg.jpg";
+import image2 from "../assets/images/4g.jpg";
+import image3 from "../assets/images/5g.jpg";
+import image4 from "../assets/images/6g.jpg";
+import image5 from "../assets/images/10g.jpg";
+import image6 from "../assets/images/8.jpg";
 
 const CATEGORIES = ["ALL", "CONCERT", "DAILY", "MAGAZINE"];
 
 const PHOTOS = [
   {
     id: 1,
-    url: "https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&q=80&w=800",
-    location: "Sydney Opera House",
+    url: image1,
+    location: "Visual Record",
     downloads: 2100,
     saves: 890,
-    category: "CONCERT",
-  },
-  {
-    id: 2,
-    url: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&q=80&w=800",
-    location: "Yosemite Valley",
-    downloads: 980,
-    saves: 210,
-    category: "DAILY",
-  },
-  {
-    id: 3,
-    url: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=800",
-    location: "Shanghai Tower",
-    downloads: 3400,
-    saves: 1200,
     category: "MAGAZINE",
   },
   {
+    id: 2,
+    url: image2,
+    location: "On Stage",
+    downloads: 980,
+    saves: 210,
+    category: "CONCERT",
+  },
+  {
+    id: 3,
+    url: image3,
+    location: "Daily Moments",
+    downloads: 3400,
+    saves: 1200,
+    category: "DAILY",
+  },
+  {
     id: 4,
-    url: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&q=80&w=800",
-    location: "Paris, France",
+    url: image4,
+    location: "Studio Shoot",
     downloads: 4200,
     saves: 1500,
     category: "MAGAZINE",
   },
   {
     id: 5,
-    url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800",
-    location: "Tokyo, Japan",
+    url: image5,
+    location: "Performance",
     downloads: 3100,
     saves: 950,
-    category: "DAILY",
+    category: "CONCERT",
   },
   {
     id: 6,
-    url: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&q=80&w=800",
-    location: "Venice, Italy",
+    url: image6,
+    location: "Casual Look",
     downloads: 2800,
     saves: 820,
-    category: "CONCERT",
+    category: "DAILY",
   }
 ];
 
@@ -97,7 +105,8 @@ export function PhotosSection() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-white py-24 px-8 md:px-24 overflow-hidden flex flex-col justify-center">
+    <section className="relative w-full min-h-screen py-24 px-8 md:px-24 overflow-hidden flex flex-col justify-center">
+      <IridescentBg />
       
       {/* Right side rotated text */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[40%] origin-center -rotate-90 pointer-events-none opacity-20">
@@ -189,7 +198,7 @@ export function PhotosSection() {
                             className={`${isSaved ? 'text-[#336799]' : 'text-neutral-400 hover:text-[#336799]'} transition-colors`}
                             title="收藏"
                           >
-                            <Heart className="h-4" style={{ backgroundColor: "#ffffff", width: "16px" }} fill={isSaved ? "currentColor" : "none"} />
+                            <Heart className="h-4 w-4" fill={isSaved ? "currentColor" : "none"} />
                           </button>
                         </div>
                       </div>

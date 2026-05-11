@@ -3,6 +3,7 @@ import { Hero } from "./components/Hero";
 import { AlbumsSection } from "./components/AlbumsSection";
 import { PhotosSection } from "./components/PhotosSection";
 import { WorksSection } from "./components/WorksSection";
+import { ProfileSection } from "./components/ProfileSection";
 
 const tabs = [
   { id: "home", label: "首页" },
@@ -13,6 +14,7 @@ const tabs = [
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("home");
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   useEffect(() => {
     const defaultOptions = {
@@ -46,7 +48,7 @@ export default function App() {
   };
 
   return (
-    <main className="w-full min-h-screen bg-ocean-50 font-sans bg-black">
+    <main className="w-full min-h-screen bg-ocean-50 font-sans">
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 flex items-start justify-between px-8 md:px-16 pt-8 pointer-events-none ${
         activeTab !== 'home' && activeTab !== 'albums' 
@@ -87,9 +89,9 @@ export default function App() {
       {/* Pages Container */}
       <div className="w-full">
         <div id="home" className="w-full min-h-screen">
-          <Hero />
+          <Hero onOpenProfile={() => setIsProfileOpen(true)} />
         </div>
-        <div id="photos" className="w-full min-h-screen bg-white">
+        <div id="photos" className="w-full min-h-screen bg-ocean-50">
           <PhotosSection />
         </div>
         <div id="works" className="w-full">
@@ -99,6 +101,8 @@ export default function App() {
           <AlbumsSection />
         </div>
       </div>
+
+      <ProfileSection isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
     </main>
   );
 }

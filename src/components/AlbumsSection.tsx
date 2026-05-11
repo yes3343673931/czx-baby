@@ -4,6 +4,7 @@ import { Play, Pause, Disc3, X, FastForward, Rewind, Search } from "lucide-react
 import { ALBUMS, Album, Track } from "../data/albums";
 import { WhaleIcon } from "./WhaleIcon";
 import { AlbumDetail } from "./AlbumDetail";
+import { IridescentBg } from "./IridescentBg";
 
 interface StackItemProps {
   album: Album;
@@ -185,11 +186,7 @@ export function AlbumsSection() {
       {/* Container for the 3D stack - Fixed height, interaction trapped when hovered */}
       <div className="relative w-full h-screen overflow-hidden">
         
-        {/* Misty Atmospheric Background */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-ocean-100 via-white to-ocean-50 z-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-ocean-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-20"></div>
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white rounded-full filter blur-[120px] opacity-40"></div>
-        </div>
+        <IridescentBg />
 
         {/* Section Title */}
         <div className="absolute top-12 md:top-24 left-8 md:left-24 z-20 pointer-events-none">

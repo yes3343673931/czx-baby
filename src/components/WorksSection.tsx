@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ALBUMS } from "../data/albums";
 import { ChevronRight, Play } from "lucide-react";
+import { IridescentBg } from "./IridescentBg";
 import kk from "../assets/images/kk.jpg";
 import biue from "../assets/images/biue.jpg";
 import llk from "../assets/images/llk.jpg";
@@ -14,7 +15,8 @@ export function WorksSection() {
   ].filter(Boolean);
 
   return (
-    <section className="py-24 md:py-32 px-8 md:px-16 lg:px-24 bg-white relative overflow-hidden">
+    <section className="py-24 md:py-32 px-8 md:px-16 lg:px-24 relative overflow-hidden">
+      <IridescentBg />
       <div className="max-w-[1600px] mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <motion.div
@@ -68,7 +70,7 @@ export function WorksSection() {
                     {/* Center Label */}
                     <div className="w-1/3 h-1/3 rounded-full overflow-hidden relative border-2 border-neutral-800 flex items-center justify-center">
                       <img 
-                        src={index === 0 ? kk : index === 1 ? biue : llk} 
+                        src={album.coverImage} 
                         alt="label"
                         className="w-full h-full object-cover opacity-80"
                       />
@@ -82,7 +84,7 @@ export function WorksSection() {
                     <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-r from-black/20 to-transparent z-20 pointer-events-none" />
                     
                     <img 
-                      src={index === 0 ? kk : index === 1 ? biue : llk}
+                      src={album.coverImage}
                       alt={album.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
