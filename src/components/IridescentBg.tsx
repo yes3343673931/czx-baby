@@ -1,6 +1,6 @@
 export function IridescentBg() {
   return (
-    <div className="absolute inset-0 bg-gradient-to-tr from-[#eef4f8] via-[#ffffff] to-[#e6f0f5] z-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/80 to-[#e6f0f5] z-0 overflow-hidden pointer-events-none">
       {/* Soft pastel light leaks for pearlescent effect (五光十色的白) */}
       <div className="absolute top-[0%] left-[-10%] w-[60%] h-[60%] bg-pink-200/40 rounded-full filter blur-[100px] mix-blend-normal animate-pulse" style={{ animationDuration: '8s' }}></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-cyan-100/50 rounded-full filter blur-[120px] mix-blend-normal animate-pulse" style={{ animationDuration: '12s' }}></div>

@@ -210,6 +210,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "好乐无荒",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=MQm810hSM9oF",
     lyrics: [
       { time: 0, text: "无人岛 - 陈卓璇" },
       { time: 2, text: "词Lyricist：陈卓璇" },
@@ -290,6 +291,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "好乐无荒",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=CAHmb66eDcEm",
     lyrics: [
       { time: 0, text: "化雪 - 陈卓璇/刘宇" },
       { time: 2, text: "词Lyricist：王佩奇/李婷薇/王学桥" },
@@ -376,6 +378,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "好乐无荒",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=LH8NKNcDDGYH",
     lyrics: [
       { time: 0, text: "记忆点 - 陈卓璇" },
       { time: 2, text: "词Lyricist：赵大白/刘昊霖/拜德盖Viigho/陈卓璇" },
@@ -453,6 +456,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "Simple Music by 鲸鱼向海",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=fqeBdazcB70T",
     lyrics: [
       { time: 0, text: "海与天之间-陈卓璇" },
       { time: 2, text: "作词Lyricist：陈可心" },
@@ -578,6 +582,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "好乐无荒",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=5HNS2OUDDW84",
     lyrics: [
       { time: 0, text: "That's Right - 陈卓璇" },
       { time: 2, text: "词Lyricist：张泽熙/希漾CeeYoung" },
@@ -665,6 +670,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "酷狗文化",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=tGv8VGWSMhvE",
     lyrics: [
       { time: 0, text: "陈卓璇-听说你" },
       { time: 2, text: "作词：见青" },
@@ -820,6 +826,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "星河森林",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=jfIShpWSMFGM",
     lyrics: [
       { time: 0, text: "我怀念的那个夏天 - 陈卓璇" },
       { time: 2, text: "词 Lyricist：易泽禹(Xun)" },
@@ -901,6 +908,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "TME影音+/星星燎原工作室",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=Bc3qBhWSMQcx",
     lyrics: [
       { time: 0, text: "感应 - 陈卓璇" },
       { time: 2, text: "词：陈聆子" },
@@ -989,6 +997,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "制作家",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=5RMbl9hSMNaH",
     lyrics: [
       { time: 0, text: "流沙 - 硬糖少女３０３陈卓璇" },
       { time: 2, text: "词：娃娃" },
@@ -1060,6 +1069,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "北京听见时代娱乐传媒有限公司",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=css7NBWSMF30",
     lyrics: [
       { time: 0, text: "莫斯科没有眼泪 (《感动她７７次》电影推广曲) - 硬糖少女３０３陈卓璇" },
       { time: 2, text: "词：许常德" },
@@ -1146,6 +1156,7 @@ export const ALBUMS: Album[] = [
     language: "国语",
     label: "星汉马文化",
     type: "Single",
+    audioUrl: "https://c6.y.qq.com/base/fcgi-bin/u?__=3XTLSYyGRzru",
     lyrics: [
       { time: 0, text: "昨夜风今宵月-陈卓璇" },
       { time: 2, text: "词: 姜洄" },

@@ -15,7 +15,7 @@ export function WorksSection() {
   ].filter(Boolean);
 
   return (
-    <section className="py-24 md:py-32 px-8 md:px-16 lg:px-24 relative overflow-hidden">
+    <section className="py-24 md:py-32 px-8 md:px-16 lg:px-24 relative">
       <IridescentBg />
       <div className="max-w-[1600px] mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">

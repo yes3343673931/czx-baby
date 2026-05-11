@@ -4,6 +4,7 @@ import { AlbumsSection } from "./components/AlbumsSection";
 import { PhotosSection } from "./components/PhotosSection";
 import { WorksSection } from "./components/WorksSection";
 import { ProfileSection } from "./components/ProfileSection";
+import { CursorRipples } from "./components/CursorRipples";
 
 const tabs = [
   { id: "home", label: "首页" },
@@ -49,6 +50,7 @@ export default function App() {
 
   return (
     <main className="w-full min-h-screen bg-ocean-50 font-sans">
+      <CursorRipples />
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 flex items-start justify-between px-8 md:px-16 pt-8 pointer-events-none ${
         activeTab !== 'home' && activeTab !== 'albums' 
