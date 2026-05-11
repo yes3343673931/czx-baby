@@ -59,16 +59,16 @@ export function Hero({ onOpenProfile }: HeroProps) {
       {/* Center Text Layout like reference */}
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-4">
         <div className="text-center text-white transform translate-y-32">
-          <h2 className="text-sm md:text-base lg:text-lg font-light tracking-[0.2em] uppercase mb-0 drop-shadow-md">
+          <h2 className="text-base md:text-lg lg:text-xl font-light tracking-[0.2em] uppercase mb-0 drop-shadow-md">
             CHEN ZHUOXUAN
           </h2>
-          <div className="text-xl md:text-2xl font-light tracking-[0.4em] mb-0.5 drop-shadow-md">
+          <div className="text-2xl md:text-3xl font-light tracking-[0.4em] mb-0.5 drop-shadow-md">
             陈卓璇
           </div>
-          <h1 className="text-4xl md:text-5xl font-light tracking-wider mb-2 md:mb-3 drop-shadow-xl uppercase">
+          <h1 className="text-5xl md:text-6xl font-light tracking-wider mb-2 md:mb-3 drop-shadow-xl uppercase">
             中国内地女歌手、演员
           </h1>
-          <div className="flex justify-center pointer-events-auto mt-2">
+          <div className="flex justify-center pointer-events-auto mt-12 md:mt-16">
             <button 
               onClick={() => {
                 if (onOpenProfile) {
@@ -78,7 +78,7 @@ export function Hero({ onOpenProfile }: HeroProps) {
                   el?.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="text-white px-8 py-2.5 rounded-full text-[14px] font-bold tracking-widest bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 transition-all shadow-xl active:scale-95"
+              className="text-white px-8 py-2.5 rounded-full text-[16px] font-bold tracking-widest bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 transition-all shadow-xl active:scale-95"
             >
               点击了解
             </button>

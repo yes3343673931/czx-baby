@@ -79,7 +79,7 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
       {/* Hidden Audio Element */}
       <audio 
         ref={audioRef}
-        src={album.audioUrl}
+        src={album.audioUrl && !album.audioUrl.includes('y.qq.com') ? album.audioUrl : undefined}
         onTimeUpdate={handleTimeUpdate}
         onEnded={onTogglePlay} // Simple toggle when ended
       />
@@ -92,7 +92,7 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
         >
           <ChevronLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
         </button>
-        <div className="text-ocean-900/40 text-xs font-mono tracking-widest uppercase hidden md:block">
+        <div className="text-ocean-900/40 text-sm font-mono tracking-widest uppercase hidden md:block">
           专辑详情 / {album.title}
         </div>
       </div>
@@ -188,10 +188,10 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
               animate={{ opacity: 1, y: 0 }}
               className="text-left"
             >
-              <h2 className="text-5xl md:text-6xl font-light text-ocean-900 tracking-widest uppercase mb-2 leading-tight">
+              <h2 className="text-5xl md:text-7xl font-light text-ocean-900 tracking-widest uppercase mb-2 leading-tight">
                 {album.title}
               </h2>
-              <div className="flex items-center gap-3 text-ocean-900/40 font-mono text-[10px] tracking-widest">
+              <div className="flex items-center gap-3 text-ocean-900/40 font-mono text-xs tracking-widest">
                 <span>{album.releaseYear} 版本</span>
                 <span className="w-1 h-1 bg-ocean-900/20 rounded-full" />
                 <span>{album.artist} {album.type}记录</span>
@@ -204,8 +204,8 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
               animate={{ opacity: 1, y: 0 }}
               className="bg-white/40 backdrop-blur-2xl rounded-[32px] border border-white/60 p-7 shadow-xl"
             >
-              <h4 className="text-[10px] font-mono text-ocean-900/40 uppercase tracking-[0.2em] mb-4">专辑简介</h4>
-              <div className="text-[12px] font-medium text-ocean-900/70 leading-relaxed italic whitespace-pre-line max-h-[160px] overflow-y-auto no-scrollbar">
+              <h4 className="text-xs font-mono text-ocean-900/40 uppercase tracking-[0.2em] mb-4">专辑简介</h4>
+              <div className="text-sm font-medium text-ocean-900/70 leading-relaxed italic whitespace-pre-line max-h-[160px] overflow-y-auto no-scrollbar">
                 {album.description}
               </div>
             </motion.div>
@@ -218,7 +218,7 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
             >
               <button 
                 onClick={onTogglePlay}
-                className="w-full md:w-auto px-10 py-5 bg-white text-ocean-900 rounded-2xl font-bold text-xs tracking-[0.2em] uppercase flex items-center justify-center gap-3 hover:bg-neutral-50 transition-all shadow-lg active:scale-95 whitespace-nowrap"
+                className="w-full md:w-auto px-10 py-5 bg-white text-ocean-900 rounded-2xl font-bold text-sm tracking-[0.2em] uppercase flex items-center justify-center gap-3 hover:bg-neutral-50 transition-all shadow-lg active:scale-95 whitespace-nowrap"
               >
                 {isPlaying && currentTrack && album.tracks.some(t => t.id === currentTrack.id) ? (
                   <><Pause className="w-4 h-4 fill-current" /> 暂停播放</>
@@ -229,16 +229,16 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
               
               <div className="flex-1 w-full grid grid-cols-3 gap-4">
                 <div className="text-center md:text-left">
-                  <p className="text-[9px] font-mono text-ocean-900/30 mb-1 tracking-widest uppercase">歌手</p>
-                  <p className="text-sm text-ocean-900/80 font-bold">{album.artist}</p>
+                  <p className="text-[11px] font-mono text-ocean-900/30 mb-1 tracking-widest uppercase">歌手</p>
+                  <p className="text-base text-ocean-900/80 font-bold">{album.artist}</p>
                 </div>
                 <div className="text-center md:text-left">
-                  <p className="text-[9px] font-mono text-ocean-900/30 mb-1 tracking-widest uppercase">唱片公司</p>
-                  <p className="text-sm text-ocean-900/80 font-bold">{album.label}</p>
+                  <p className="text-[11px] font-mono text-ocean-900/30 mb-1 tracking-widest uppercase">唱片公司</p>
+                  <p className="text-base text-ocean-900/80 font-bold">{album.label}</p>
                 </div>
                 <div className="text-center md:text-left">
-                  <p className="text-[9px] font-mono text-ocean-900/30 mb-1 tracking-widest uppercase">语言</p>
-                  <p className="text-sm text-ocean-900/80 font-bold">{album.language}</p>
+                  <p className="text-[11px] font-mono text-ocean-900/30 mb-1 tracking-widest uppercase">语言</p>
+                  <p className="text-base text-ocean-900/80 font-bold">{album.language}</p>
                 </div>
               </div>
             </motion.div>
@@ -252,7 +252,7 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
               <div className="mb-8 flex items-end justify-between">
                 <div>
                   <h3 className="text-2xl font-medium text-ocean-900 tracking-tight leading-none mb-2">曲目列表</h3>
-                  <p className="text-[10px] font-mono text-ocean-900/40 uppercase tracking-widest">1 首单曲</p>
+                  <p className="text-xs font-mono text-ocean-900/40 uppercase tracking-widest">1 首单曲</p>
                 </div>
                 <Disc3 className={`w-8 h-8 text-ocean-900/20 ${isPlaying ? 'animate-spin-slow' : ''}`} />
               </div>
@@ -288,12 +288,12 @@ export function AlbumDetail({ album, onClose, onPlayTrack, currentTrack, isPlayi
                         )}
                       </div>
                       <div className="flex-1">
-                        <p className={`text-xl tracking-wide transition-colors ${isCurrent ? 'text-ocean-900 font-bold' : 'text-ocean-900/70 group-hover:text-ocean-900'}`}>
+                        <p className={`text-2xl tracking-wide transition-colors ${isCurrent ? 'text-ocean-900 font-bold' : 'text-ocean-900/70 group-hover:text-ocean-900'}`}>
                           {track.title}
                         </p>
                       </div>
                       <div className="flex items-center gap-6">
-                        <span className="text-xs font-mono text-ocean-900/30 tracking-widest uppercase">{track.duration}</span>
+                        <span className="text-sm font-mono text-ocean-900/30 tracking-widest uppercase">{track.duration}</span>
                         {isCurrent && isPlaying ? (
                           <Pause className="w-5 h-5 text-ocean-900 fill-current" onClick={(e) => { e.stopPropagation(); onTogglePlay(); }} />
                         ) : (

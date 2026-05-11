@@ -66,12 +66,12 @@ export default function App() {
         
         <div className="flex justify-end items-center pointer-events-auto mt-2 overflow-x-auto no-scrollbar relative">
             <div className={`absolute bottom-0 left-0 right-0 h-[1px] ${activeTab !== 'home' && activeTab !== 'albums' ? 'bg-neutral-200' : 'bg-white/30'} z-0`}></div>
-            <div className="flex gap-6 md:gap-10 relative z-10 px-4 text-[13px]">
+            <div className="flex gap-6 md:gap-10 relative z-10 px-4 text-sm">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => scrollToSection(tab.id)}
-                  className={`text-[14px] tracking-widest transition-all font-medium whitespace-nowrap pb-3 border-b-[3px] ${
+                  className={`text-[15px] tracking-widest transition-all font-medium whitespace-nowrap pb-3 border-b-[3px] ${
                     activeTab === tab.id
                       ? (activeTab === 'photos' || activeTab === 'works' ? "text-[#336799] border-[#336799] font-bold" : "text-white border-white font-bold")
                       : (activeTab === 'photos' || activeTab === 'works')

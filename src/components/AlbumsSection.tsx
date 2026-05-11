@@ -87,8 +87,8 @@ const StackItem: React.FC<StackItemProps> = ({
       
       {/* Title & Date under active album */}
       <motion.div style={{ opacity: textOpacity }} className="absolute -bottom-16 left-0 right-0 text-center pointer-events-none">
-        <h3 className="text-lg md:text-2xl font-medium tracking-widest text-[#336799] drop-shadow-md">{album.title}</h3>
-        <p className="text-xs md:text-sm text-ocean-800/60 tracking-widest mt-1">{album.releaseYear}</p>
+        <h3 className="text-xl md:text-3xl font-medium tracking-widest text-[#336799] drop-shadow-md">{album.title}</h3>
+        <p className="text-sm md:text-base text-ocean-800/60 tracking-widest mt-1">{album.releaseYear}</p>
       </motion.div>
     </motion.div>
   );
@@ -158,11 +158,20 @@ export function AlbumsSection() {
   const handlePlayAlbum = (album: Album) => {
     setSelectedAlbum(album);
     setCurrentTrack(album.tracks[0]);
-    setIsPlaying(true);
+    
+    // If it's a jump link, don't auto-play (and thus don't jump) when just viewing
+    // The user must click the play button specifically
+    setIsPlaying(false); 
     setViewingAlbum(album);
   };
 
   const handlePlayTrack = (track: Track) => {
+    const album = viewingAlbum || selectedAlbum;
+    if (album?.audioUrl && (album.audioUrl.includes('y.qq.com') || album.audioUrl.includes('c6.y.qq.com'))) {
+      window.open(album.audioUrl, '_blank');
+      return;
+    }
+
     if (viewingAlbum) {
       setSelectedAlbum(viewingAlbum);
     }
@@ -171,14 +180,26 @@ export function AlbumsSection() {
   };
 
   const handlePlayAll = () => {
-    if (displayAlbums.length > 0 && displayAlbums[0].tracks.length > 0) {
-      setSelectedAlbum(displayAlbums[0]);
-      setCurrentTrack(displayAlbums[0].tracks[0]);
+    const firstAlbum = displayAlbums[0];
+    if (firstAlbum && firstAlbum.tracks.length > 0) {
+      if (firstAlbum.audioUrl && (firstAlbum.audioUrl.includes('y.qq.com') || firstAlbum.audioUrl.includes('c6.y.qq.com'))) {
+        window.open(firstAlbum.audioUrl, '_blank');
+        return;
+      }
+      setSelectedAlbum(firstAlbum);
+      setCurrentTrack(firstAlbum.tracks[0]);
       setIsPlaying(true);
     }
   };
 
-  const togglePlay = () => setIsPlaying(!isPlaying);
+  const togglePlay = () => {
+    const album = selectedAlbum || viewingAlbum;
+    if (album?.audioUrl && (album.audioUrl.includes('y.qq.com') || album.audioUrl.includes('c6.y.qq.com'))) {
+      window.open(album.audioUrl, '_blank');
+      return;
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <section ref={containerRef} className="relative w-full bg-ocean-50">
@@ -194,13 +215,13 @@ export function AlbumsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h2 className="text-sm md:text-base font-medium tracking-[0.3em] text-[#336799] uppercase mb-4">
+            <h2 className="text-base md:text-lg font-medium tracking-[0.3em] text-[#336799] uppercase mb-4">
               Latest Singles
             </h2>
-            <h3 className="text-[48px] font-light text-neutral-900 tracking-tight mb-2">
+            <h3 className="text-[54px] font-light text-neutral-900 tracking-tight mb-2">
               单曲
             </h3>
-            <p className="text-[10px] md:text-xs font-light tracking-[0.2em] uppercase text-ocean-800/40">
+            <p className="text-xs md:text-sm font-light tracking-[0.2em] uppercase text-ocean-800/40">
               Scroll to explore / 滑动探索
             </p>
           </motion.div>
@@ -250,8 +271,8 @@ export function AlbumsSection() {
                               <img src={album.coverImage} className="w-full h-full object-cover" />
                             </div>
                             <div className="flex-1 overflow-hidden">
-                              <p className="text-sm font-bold text-ocean-900 truncate">{album.title}</p>
-                              <p className="text-[10px] text-ocean-900/50 uppercase tracking-widest truncate">{album.artist}</p>
+                              <p className="text-base font-bold text-ocean-900 truncate">{album.title}</p>
+                              <p className="text-xs text-ocean-900/50 uppercase tracking-widest truncate">{album.artist}</p>
                             </div>
                           </div>
                         ))}
@@ -317,10 +338,10 @@ export function AlbumsSection() {
                 </div>
               </div>
               <div>
-                <p className="text-sm font-semibold text-white">
+                <p className="text-base font-semibold text-white">
                   正在播放: {currentTrack?.title || selectedAlbum.title}
                 </p>
-                <p className="text-[10px] text-white/50 uppercase tracking-widest mt-0.5">
+                <p className="text-xs text-white/50 uppercase tracking-widest mt-0.5">
                   {selectedAlbum.title} • {selectedAlbum.releaseYear}
                 </p>
               </div>
@@ -367,7 +388,7 @@ export function AlbumsSection() {
 
               {/* Progress bar */}
               <div className="hidden md:flex items-center gap-3 w-48 lg:w-64">
-                <span className="text-[10px] tracking-wider text-white/50 font-mono">0:00</span>
+                <span className="text-xs tracking-wider text-white/50 font-mono">0:00</span>
                 <div className="h-1 bg-white/10 rounded-full flex-1 overflow-hidden relative">
                   <motion.div 
                     className="absolute left-0 top-0 bottom-0 bg-white"
@@ -376,7 +397,7 @@ export function AlbumsSection() {
                     transition={{ duration: isPlaying ? parseInt((currentTrack?.duration || "0:00").replace(':', '')) : 0, ease: "linear" }}
                   />
                 </div>
-                <span className="text-[10px] tracking-wider text-white/50 font-mono">{currentTrack?.duration || "0:00"}</span>
+                <span className="text-xs tracking-wider text-white/50 font-mono">{currentTrack?.duration || "0:00"}</span>
               </div>
             </div>
 
