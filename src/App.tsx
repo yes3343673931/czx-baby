@@ -5,6 +5,7 @@ import { PhotosSection } from "./components/PhotosSection";
 import { WorksSection } from "./components/WorksSection";
 import { ProfileSection } from "./components/ProfileSection";
 import { CursorRipples } from "./components/CursorRipples";
+import { IridescentBg } from "./components/IridescentBg";
 
 const tabs = [
   { id: "home", label: "首页" },
@@ -21,7 +22,7 @@ export default function App() {
     const defaultOptions = {
       root: null,
       rootMargin: "-50% 0px -50% 0px",
-      threshold: 0
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -32,7 +33,7 @@ export default function App() {
       });
     }, defaultOptions);
 
-    tabs.forEach(tab => {
+    tabs.forEach((tab) => {
       const element = document.getElementById(tab.id);
       if (element) observer.observe(element);
     });
@@ -44,47 +45,54 @@ export default function App() {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <main className="w-full min-h-screen bg-ocean-50 font-sans">
+    <main className="w-full min-h-screen bg-ocean-50 font-sans relative">
+      <IridescentBg className="fixed inset-0" />
       <CursorRipples />
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 flex items-start justify-between px-8 md:px-16 pt-8 pointer-events-none ${
-        activeTab !== 'home' && activeTab !== 'albums' 
-          ? 'bg-white/90 backdrop-blur-md shadow-sm h-20 pt-6 opacity-100' 
-          : activeTab === 'albums' 
-            ? 'opacity-0 h-0 overflow-hidden' 
-            : 'h-32 opacity-100'
-      }`}>
-        <div 
+      <nav
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 flex items-start justify-between px-8 md:px-16 pt-8 pointer-events-none ${
+          activeTab !== "home" && activeTab !== "albums"
+            ? "bg-white/90 backdrop-blur-md shadow-sm h-20 pt-6 opacity-100"
+            : activeTab === "albums"
+              ? "opacity-0 h-0 overflow-hidden"
+              : "h-32 opacity-100"
+        }`}
+      >
+        <div
           onClick={() => scrollToSection("home")}
-          className={`font-serif tracking-widest cursor-pointer shrink-0 pointer-events-auto transition-all duration-500 text-[43px] ${activeTab !== 'home' && activeTab !== 'albums' ? 'opacity-0 pointer-events-none translate-x-[-20px]' : 'text-white font-bold drop-shadow-md opacity-100'}`}
+          className={`font-serif tracking-widest cursor-pointer shrink-0 pointer-events-auto transition-all duration-500 text-[43px] ${activeTab !== "home" && activeTab !== "albums" ? "opacity-0 pointer-events-none translate-x-[-20px]" : "text-white font-bold drop-shadow-md opacity-100"}`}
         >
           CZ<span className="font-sans font-light">X</span>
         </div>
-        
+
         <div className="flex justify-end items-center pointer-events-auto mt-2 overflow-x-auto no-scrollbar relative">
-            <div className={`absolute bottom-0 left-0 right-0 h-[1px] ${activeTab !== 'home' && activeTab !== 'albums' ? 'bg-neutral-200' : 'bg-white/30'} z-0`}></div>
-            <div className="flex gap-6 md:gap-10 relative z-10 px-4 text-sm">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => scrollToSection(tab.id)}
-                  className={`text-[15px] tracking-widest transition-all font-medium whitespace-nowrap pb-3 border-b-[3px] ${
-                    activeTab === tab.id
-                      ? (activeTab === 'photos' || activeTab === 'works' ? "text-[#336799] border-[#336799] font-bold" : "text-white border-white font-bold")
-                      : (activeTab === 'photos' || activeTab === 'works')
-                        ? "text-neutral-500 hover:text-[#336799] border-transparent"
-                        : "text-white/70 hover:text-white border-transparent drop-shadow-sm hover:border-white/50"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+          <div
+            className={`absolute bottom-0 left-0 right-0 h-[1px] ${activeTab !== "home" && activeTab !== "albums" ? "bg-neutral-200" : "bg-white/30"} z-0`}
+          ></div>
+          <div className="flex gap-6 md:gap-10 relative z-10 px-4 text-sm">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => scrollToSection(tab.id)}
+                className={`text-[15px] tracking-widest transition-all font-medium whitespace-nowrap pb-3 border-b-[3px] ${
+                  activeTab === tab.id
+                    ? activeTab === "photos" || activeTab === "works"
+                      ? "text-[#336799] border-[#336799] font-bold"
+                      : "text-white border-white font-bold"
+                    : activeTab === "photos" || activeTab === "works"
+                      ? "text-neutral-500 hover:text-[#336799] border-transparent"
+                      : "text-white/70 hover:text-white border-transparent drop-shadow-sm hover:border-white/50"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
@@ -93,19 +101,21 @@ export default function App() {
         <div id="home" className="w-full min-h-screen">
           <Hero onOpenProfile={() => setIsProfileOpen(true)} />
         </div>
-        <div id="photos" className="w-full min-h-screen bg-ocean-50">
+        <div id="photos" className="w-full min-h-screen relative z-10">
           <PhotosSection />
         </div>
-        <div id="works" className="w-full">
+        <div id="works" className="w-full relative z-10">
           <WorksSection />
         </div>
-        <div id="albums" className="w-full">
+        <div id="albums" className="w-full relative z-10">
           <AlbumsSection />
         </div>
       </div>
 
-      <ProfileSection isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
+      <ProfileSection
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+      />
     </main>
   );
 }
-

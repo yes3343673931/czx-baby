@@ -12,26 +12,32 @@ interface Ripple {
 export const CursorRipples: React.FC = () => {
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [whaleAudio, setWhaleAudio] = useState<HTMLAudioElement | null>(null);
+  const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const pauseTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
 
   // Initialize audio on first user interaction to satisfy browser policies
   const initAudio = useCallback(() => {
-    if (!whaleAudio) {
-      // Direct MP3 link from NOAA for the 52Hz whale (high compatibility)
-      const audio = new Audio('https://oceanexplorer.noaa.gov/facts/media/52-hertz-whale.mp3');
+    if (!audioRef.current) {
+      // Use a more reliable source for whale sounds
+      const audio = new Audio('https://www.nps.gov/glba/learn/nature/sounds/humpback_whale_song.mp3');
       audio.preload = 'auto';
-      audio.volume = 0.5;
+      audio.volume = 0.4;
+      
+      // Add error listener for logging and potential fallback
       audio.addEventListener('error', (e) => {
-        console.error("Audio Load Error. Attempting fallback...", e);
-        // Fallback to a secondary source if needed
-        audio.src = 'https://actions.google.com/sounds/v1/water/deep_vibration.ogg';
+        console.warn("Primary whale audio failed to load, trying fallback...", e);
+        // Fallback to a different source if primary fails
+        if (audio.src.includes('nps.gov')) {
+          audio.src = 'https://actions.google.com/sounds/v1/water/reverberating_drips.ogg';
+          audio.load();
+        }
       });
-      setWhaleAudio(audio);
-      return audio;
+      
+      audioRef.current = audio;
     }
-    return whaleAudio;
-  }, [whaleAudio]);
+    return audioRef.current;
+  }, []);
 
   const addRipple = useCallback((x: number, y: number, size: number = 40) => {
     const id = Date.now() + Math.random();
@@ -46,16 +52,36 @@ export const CursorRipples: React.FC = () => {
     if (size > 80 && isSoundEnabled) {
       const audio = initAudio();
       if (audio) {
-        audio.currentTime = 0;
-        audio.play().catch(err => {
-          console.error("Whale sound playback failed:", err);
-          // Potential reason: interaction requirement not met or invalid source
-        });
-        
-        // Stop sound after 3 seconds as requested
-        setTimeout(() => {
-          audio.pause();
-        }, 3000);
+        // Clear any existing pause timer to allow the sound to play fully or restart safely
+        if (pauseTimerRef.current) {
+          clearTimeout(pauseTimerRef.current);
+          pauseTimerRef.current = null;
+        }
+
+        try {
+          // Restart audio if already playing or ended
+          audio.currentTime = 0;
+          const playPromise = audio.play();
+          
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              // Sound started successfully, schedule pause
+              pauseTimerRef.current = setTimeout(() => {
+                // Check if audio is still there and not already paused by another click
+                if (audioRef.current) {
+                  audioRef.current.pause();
+                }
+              }, 4000);
+            }).catch(err => {
+              // Ignore AbortError which is thrown when play() is cancelled by another play()/pause()
+              if (err.name !== 'AbortError') {
+                console.error("Whale sound playback failed:", err);
+              }
+            });
+          }
+        } catch (e) {
+          console.error("Audio trigger error:", e);
+        }
       }
     }
   }, [initAudio, isSoundEnabled]);
